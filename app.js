@@ -7,4 +7,6 @@ request({
     // console.log(JSON.stringify(response, undefined, 2));
 
     console.log(`Address: ${JSON.stringify(body.results[0].providedLocation.location)}`);
+    console.log(`Longitude: ${JSON.stringify(body.results[0].locations[0].latLng.lng)}`);
+    console.log(`Laditude: ${JSON.stringify(body.results[0].locations[0].latLng.lat)}`);
 })
