@@ -1,7 +1,22 @@
 const request = require('request');
+const yargs = require('yargs');
+
+const argv = yargs.options({
+    a: {
+        demand: true,
+        alias: 'address',
+        describe: 'Address to fetch weather for',
+        string: true
+    }
+})
+.help()
+.alias('help', 'h')
+.argv;
+
+let encodedAddress = encodeURIComponent(argv.a);
 
 request({
-    url: 'http://www.mapquestapi.com/geocoding/v1/address?key=yBhtlHjM1bPrsZdpmAvGlqoG7mrW4Vyw&location=1301%20lombard%20street%20philadelphia&fbclid=IwAR3KoGjr_3fe4JB0XJnj9BdVztH5Envd05EQVxvwQcQLtdkYcjo0t2g55Yo',
+    url: `http://www.mapquestapi.com/geocoding/v1/address?key=yBhtlHjM1bPrsZdpmAvGlqoG7mrW4Vyw&location=${encodedAddress}&fbclid=IwAR3KoGjr_3fe4JB0XJnj9BdVztH5Envd05EQVxvwQcQLtdkYcjo0t2g55Yo`,
     json: true
 }, (error, response, body) => {
     // console.log(JSON.stringify(response, undefined, 2));
